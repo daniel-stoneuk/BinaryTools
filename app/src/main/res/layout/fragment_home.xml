@@ -38,7 +38,7 @@
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
-                android:hint="@string/frament_home_hint" />
+                android:hint="@string/fragment_home_hint" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -70,7 +70,7 @@
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
-                android:hint="@string/frament_home_hint" />
+                android:hint="@string/fragment_home_hint" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -100,7 +100,7 @@
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
-                android:hint="@string/frament_home_hint" />
+                android:hint="@string/fragment_home_hint" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -132,7 +132,7 @@
                 android:inputType="text|textCapCharacters"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
-                android:hint="@string/frament_home_hint" />
+                android:hint="@string/fragment_home_hint" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -179,7 +179,7 @@
                 android:inputType="text|textCapCharacters"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
-                android:hint="@string/frament_home_hint" />
+                android:hint="@string/fragment_home_hint" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -222,7 +222,7 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/frament_home_hint"
+                android:hint="@string/fragment_home_hint"
                 android:inputType="text|textCapCharacters"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />

@@ -1,13 +1,20 @@
 apply plugin: 'com.android.application'
 
+
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = 1 // bump for dogfood builds, public betas, etc.
+
+
 android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.danielstone.binarytools"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,11 +34,16 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.6.0'
 
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.github.daniel-stoneuk:material-about-library:2.2.3-support27.0.2'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation "android.arch.lifecycle:extensions:1.0.0"
     annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+
+    compile "com.mikepenz:iconics-core:2.9.5@aar"
+    compile 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
@@ -21,12 +22,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 case R.id.navigation_home:
                     fragment = HomeFragment.newInstance();
                     break;
-                case R.id.navigation_settings:
-
+                case R.id.navigation_about:
+                    fragment = AboutFragment.newInstance(new AboutFragment());
                     break;
             }
             if (fragment != null) {
-                manager.beginTransaction().replace(R.id.mainactivity_container, fragment).commit();
+                manager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).replace(R.id.mainactivity_container, fragment).commit();
                 return true;
             } else {
                 return false;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_container, HomeFragment.newInstance()).commit();
+
     }
 
 }
