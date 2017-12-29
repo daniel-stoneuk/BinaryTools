@@ -17,8 +17,8 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<String> baseN1 = new MutableLiveData<>();
     private final MutableLiveData<String> baseN2 = new MutableLiveData<>();
 
-    private int n1Base = 30;
-    private int n2Base = 12;
+    private int n1Base = 24;
+    private int n2Base = 36;
 
     public void setN1Base(int base) {
         n1Base = base;
