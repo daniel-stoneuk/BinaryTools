@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">BinaryTools</string>
+    <string name="app_name">Binary Tools</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_settings">Options</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="frament_home_hint">Enter a value</string>
 </resources>
