@@ -1,271 +1,269 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.danielstone.binarytools.HomeFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp"
             android:text="Base 2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_base_two"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/textView">
+            app:hintEnabled="false">
 
             <android.support.design.widget.TextInputEditText
-                android:imeOptions="flagNoExtractUi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_home_hint"
+                android:imeOptions="flagNoExtractUi"
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp"
             android:text="Base 8"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_base_eight"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/textView2">
+            app:hintEnabled="false">
 
             <android.support.design.widget.TextInputEditText
-                android:imeOptions="flagNoExtractUi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_home_hint"
+                android:imeOptions="flagNoExtractUi"
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp"
             android:text="Base 10"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_base_ten"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/textView4">
+            app:hintEnabled="false">
 
             <android.support.design.widget.TextInputEditText
-                android:imeOptions="flagNoExtractUi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_home_hint"
+                android:imeOptions="flagNoExtractUi"
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp"
             android:text="Base 16"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_base_sixteen"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/textView5">
+            app:hintEnabled="false">
 
             <android.support.design.widget.TextInputEditText
-                android:imeOptions="flagNoExtractUi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_home_hint"
+                android:imeOptions="flagNoExtractUi"
                 android:inputType="text|textCapCharacters"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="Base"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+    </LinearLayout>
 
-        <EditText
-            android:imeOptions="flagNoExtractUi"
-            android:id="@+id/input_n1"
-            android:layout_width="35dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="104dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="textPersonName|textPostalAddress|number"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:text="24"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-            app:layout_constraintStart_toEndOf="@+id/textView6" />
+            android:layout_gravity="top"
+            android:gravity="center_vertical"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:text="Base"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <EditText
+                android:id="@+id/input_n1"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:text="24"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        </LinearLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_base_n1"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/input_n1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/input_n1"
-            app:layout_constraintVertical_bias="1.0">
+            app:hintEnabled="false">
 
             <android.support.design.widget.TextInputEditText
-                android:imeOptions="flagNoExtractUi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_home_hint"
+                android:imeOptions="flagNoExtractUi"
                 android:inputType="text|textCapCharacters"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="Base"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+    </LinearLayout>
 
-        <EditText
-            android:imeOptions="flagNoExtractUi"
-            android:id="@+id/input_n2"
-            android:layout_width="35dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="104dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="number"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:text="36"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
-            app:layout_constraintStart_toEndOf="@+id/textView8" />
+            android:layout_gravity="top"
+            android:gravity="center_vertical"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:text="Base"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <EditText
+                android:id="@+id/input_n2"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:text="36"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        </LinearLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_base_n2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:hintEnabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/input_n2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/input_n2"
-            app:layout_constraintVertical_bias="1.0">
+            app:hintEnabled="false">
 
             <android.support.design.widget.TextInputEditText
-                android:imeOptions="flagNoExtractUi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_home_hint"
+                android:imeOptions="flagNoExtractUi"
                 android:inputType="text|textCapCharacters"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="96dp" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Change the bottom two bases to any value between 2 and 36 inclusive. "
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_n2" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Change the bottom two bases to any value between 2 and 36 inclusive. "
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+</LinearLayout>
