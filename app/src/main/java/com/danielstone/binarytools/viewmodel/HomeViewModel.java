@@ -15,15 +15,15 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<String> baseN1 = new MutableLiveData<>();
     private final MutableLiveData<String> baseN2 = new MutableLiveData<>();
 
-    private int n1Base = 24;
-    private int n2Base = 36;
+    private MutableLiveData<Integer> n1Base = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> n2Base = new MutableLiveData<Integer>();
 
     public void setN1Base(int base) {
-        n1Base = base;
+        n1Base.setValue(base);
     }
 
     public void setN2Base(int base) {
-        n2Base = base;
+        n2Base.setValue(base);
     }
 
     public boolean setNewValue(String s, int radix) {
@@ -38,6 +38,7 @@ public class HomeViewModel extends ViewModel {
                 if ((u >= '0' && u <= '9') || (u >= 'A' && u <= 'Z')) { // if the character is a number or alphabetical letter
                     if ((u >= '0' && u <= '9')) u = u - '0';
                     else u = (u - 'A') + 10; // change the integer representation to the correct value
+                    if (u >= radix) throw new Exception();
                     BigInteger digit = new BigInteger(String.valueOf(u));
                     BigInteger value = digit.multiply(new BigInteger(String.valueOf(base.pow(s.length() - (i + 1)))));
                     result = result.add(value);
@@ -50,18 +51,15 @@ public class HomeViewModel extends ViewModel {
             baseEight.setValue(convertToBase(result, 8));
             baseTen.setValue(convertToBase(result, 10));
             baseSixteen.setValue(convertToBase(result, 16));
-            baseN1.setValue(convertToBase(result, n1Base));
-            baseN2.setValue(convertToBase(result, n2Base));
+            if (n1Base.getValue() == null) n1Base.setValue(24);
+            if (n2Base.getValue() == null) n2Base.setValue(36);
+            baseN1.setValue(convertToBase(result, n1Base.getValue()));
+            baseN2.setValue(convertToBase(result, n2Base.getValue()));
 
             return true;
 
         } catch (Throwable e) {
-            if (radix != 2) baseTwo.setValue("");
-            if (radix != 8) baseEight.setValue("");
-            if (radix != 10) baseTen.setValue("");
-            if (radix != 16) baseSixteen.setValue("");
-            if (radix != n1Base) baseN1.setValue("");
-            if (radix != n2Base) baseN2.setValue("");
+            clearStrings();
             return false;
         }
 
@@ -81,6 +79,15 @@ public class HomeViewModel extends ViewModel {
             decimal = division[0]; // use the new decimal value.
         }
         return result;
+    }
+
+    public void clearStrings() {
+        baseTwo.setValue("");
+        baseEight.setValue("");
+        baseTen.setValue("");
+        baseSixteen.setValue("");
+        baseN1.setValue("");
+        baseN2.setValue("");
     }
 
     public LiveData<String> getBaseTwo() {
@@ -107,11 +114,11 @@ public class HomeViewModel extends ViewModel {
         return baseN2;
     }
 
-    public int getN1Base() {
+    public MutableLiveData<Integer> getN1Base() {
         return n1Base;
     }
 
-    public int getN2Base() {
+    public MutableLiveData<Integer> getN2Base() {
         return n2Base;
     }
 }

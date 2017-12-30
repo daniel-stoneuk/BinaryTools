@@ -119,8 +119,8 @@ public class HomeFragment extends Fragment {
         public void afterTextChanged(Editable s) {
             Timber.i("radix: " + radix + " s: " + s);
             int radix = this.radix;
-            if (this.radix == 37) radix = model.getN1Base();
-            if (this.radix == 38) radix = model.getN2Base();
+            if (this.radix == 37) model.getN1Base().setValue(radix);
+            if (this.radix == 38) model.getN2Base().setValue(radix);
             if (!s.toString().isEmpty()) {
                 if (!model.setNewValue(s.toString(), radix)) {
                     textInputLayout.setError("Invalid Input");
@@ -128,6 +128,7 @@ public class HomeFragment extends Fragment {
                     textInputLayout.setErrorEnabled(false);
                 }
             } else {
+                model.clearStrings();
                 textInputLayout.setErrorEnabled(false);
             }
         }
@@ -158,20 +159,13 @@ public class HomeFragment extends Fragment {
         @SuppressLint("SetTextI18n")
         @Override
         public void afterTextChanged(Editable s) {
+            int radix = 2;
             try {
-                int i = Integer.parseInt(s.toString());
-                if (i > 36) {
-                    editText.setText(Integer.toString(36));
-                    editText.selectAll();
-                } else if (i < 2) {
-                    inputLayout.setEnabled(false);
-                }
+                radix = Integer.parseInt(s.toString());
             } catch (Exception e) {
                 Random random = new Random();
-                editText.setText(Integer.toString(random.nextInt(34) + 2));
-                editText.selectAll();
+                radix = random.nextInt(34) + 2;
             }
-            int radix = Integer.parseInt(editText.getText().toString());
             if (n == 1) {
                 model.setN1Base(radix);
                 model.setNewValue(inputBaseTen.getEditText().getText().toString(), 10);
@@ -187,7 +181,7 @@ public class HomeFragment extends Fragment {
     MyTextWatcher[] textWatchers = new MyTextWatcher[39]; // 37 & 38 reserved for n1, n2
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -206,9 +200,11 @@ public class HomeFragment extends Fragment {
         inputBaseTen.getEditText().addTextChangedListener(textWatchers[10]);
         inputBaseSixteen.getEditText().addTextChangedListener(textWatchers[16]);
 
-        inputN1.addTextChangedListener(new CustomBaseWatcher(inputN1, inputBaseN1, 1));
+        final CustomBaseWatcher inputN1BaseWatcher = new CustomBaseWatcher(inputN1, inputBaseN1, 1);
+        inputN1.addTextChangedListener(inputN1BaseWatcher);
         inputBaseN1.getEditText().addTextChangedListener(textWatchers[37]);
-        inputN2.addTextChangedListener(new CustomBaseWatcher(inputN2, inputBaseN2, 2));
+        final CustomBaseWatcher inputN2BaseWatcher = new CustomBaseWatcher(inputN2, inputBaseN2, 2);
+        inputN2.addTextChangedListener(inputN2BaseWatcher);
         inputBaseN2.getEditText().addTextChangedListener(textWatchers[38]);
 
 
@@ -218,6 +214,27 @@ public class HomeFragment extends Fragment {
         model.getBaseSixteen().observe(this, new MyObserver(inputBaseSixteen, 16));
         model.getBaseN1().observe(this, new MyObserver(inputBaseN1, 37));
         model.getBaseN2().observe(this, new MyObserver(inputBaseN2, 38));
+
+        model.getN1Base().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                if (!inputN1.isFocused()) {
+                    inputN1.removeTextChangedListener(inputN1BaseWatcher);
+                    inputN1.setText(String.valueOf(integer));
+                    inputN1.addTextChangedListener(inputN1BaseWatcher);
+                }
+            }
+        });
+        model.getN2Base().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                if (!inputN2.isFocused()) {
+                    inputN2.removeTextChangedListener(inputN2BaseWatcher);
+                    inputN2.setText(String.valueOf(integer));
+                    inputN2.addTextChangedListener(inputN2BaseWatcher);
+                }
+            }
+        });
 
         return root;
     }
