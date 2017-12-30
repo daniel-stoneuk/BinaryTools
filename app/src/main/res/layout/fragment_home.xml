@@ -1,269 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="16dp"
-            android:gravity="center_vertical"
-            android:paddingTop="16dp"
-            android:text="Base 2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_base_two"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            app:hintEnabled="false">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/fragment_home_hint"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="numberDecimal"
-                android:selectAllOnFocus="true"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="16dp"
-            android:gravity="center_vertical"
-            android:paddingTop="16dp"
-            android:text="Base 8"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_base_eight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            app:hintEnabled="false">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/fragment_home_hint"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="numberDecimal"
-                android:selectAllOnFocus="true"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="16dp"
-            android:gravity="center_vertical"
-            android:paddingTop="16dp"
-            android:text="Base 10"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_base_ten"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            app:hintEnabled="false">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/fragment_home_hint"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="numberDecimal"
-                android:selectAllOnFocus="true"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="16dp"
-            android:gravity="center_vertical"
-            android:paddingTop="16dp"
-            android:text="Base 16"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_base_sixteen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            app:hintEnabled="false">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/fragment_home_hint"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="text|textCapCharacters"
-                android:selectAllOnFocus="true"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="104dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:gravity="center_vertical"
-            android:paddingTop="6dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="Base"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-            <EditText
-                android:id="@+id/input_n1"
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="center"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="number"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:text="24"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-        </LinearLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_base_n1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            app:hintEnabled="false">
+            android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp"
+                android:text="Base 2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_base_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/fragment_home_hint"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="text|textCapCharacters"
-                android:selectAllOnFocus="true"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false">
 
-    </LinearLayout>
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_home_hint"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="104dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:gravity="center_vertical"
-            android:paddingTop="6dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="Base"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-            <EditText
-                android:id="@+id/input_n2"
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="center"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="number"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:text="36"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-        </LinearLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_base_n2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            app:hintEnabled="false">
+            android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp"
+                android:text="Base 8"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_base_eight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/fragment_home_hint"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="text|textCapCharacters"
-                android:selectAllOnFocus="true"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_home_hint"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp"
+                android:text="Base 10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_base_ten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_home_hint"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp"
+                android:text="Base 16"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_base_sixteen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_home_hint"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text|textCapCharacters"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="center_vertical"
+                android:paddingTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="Base"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <EditText
+                    android:id="@+id/input_n1"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:text="24"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_base_n1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_home_hint"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text|textCapCharacters"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="center_vertical"
+                android:paddingTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="Base"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <EditText
+                    android:id="@+id/input_n2"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:text="36"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_base_n2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_home_hint"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text|textCapCharacters"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Change the bottom two bases to any value between 2 and 36 inclusive. "
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Change the bottom two bases to any value between 2 and 36 inclusive. "
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-</LinearLayout>
+</ScrollView>
