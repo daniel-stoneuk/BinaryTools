@@ -66,11 +66,11 @@ public class HomeViewModel extends ViewModel {
                     }
                 }
             }
-            double fractionResult = -1;
+            BigDecimal fractionResult = null;
             if (parts.length == 2) {
                 String fractionPart = parts[1];
                 BigDecimal base = BigDecimal.valueOf(radix);
-                fractionResult = 0.0;
+                fractionResult = new BigDecimal("0");
                 for (int i = 0; i < fractionPart.length(); i++) {
                     char c = fractionPart.charAt(i); // the
                     int u = (int) c; // integer representation of the character in ascii
@@ -78,14 +78,16 @@ public class HomeViewModel extends ViewModel {
                         if ((u >= '0' && u <= '9')) u = u - '0';
                         else u = (u - 'A') + 10; // change the integer representation to the correct value
                         if (u >= radix) throw new Exception();
-                        fractionResult += u * Math.pow(radix, (-1 - i));
+                        BigDecimal digit = new BigDecimal(String.valueOf(u));
+                        BigDecimal value = digit.multiply(new BigDecimal(String.valueOf(base.pow(- i - 1, MathContext.DECIMAL64))));
+                        fractionResult = fractionResult.add(value);
                     } else {
                         throw new Exception();
                     }
                 }
             }
 
-            if (integerResult != null && fractionResult  == -1) {
+            if (integerResult != null && fractionResult == null) {
                 baseTwo.setValue(convertIntegerToBase(integerResult, 2));
                 baseEight.setValue(convertIntegerToBase(integerResult, 8));
                 baseTen.setValue(integerResult.toString());
@@ -95,7 +97,7 @@ public class HomeViewModel extends ViewModel {
                 baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()));
                 baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()));
             }
-            if (integerResult != null && fractionResult != -1) {
+            if (integerResult != null && fractionResult != null) {
                 baseTwo.setValue(convertIntegerToBase(integerResult, 2) + "." + convertFractionToBase(fractionResult, 2));
                 baseEight.setValue(convertIntegerToBase(integerResult, 8) + "." + convertFractionToBase(fractionResult, 8));
                 baseTen.setValue(integerResult.toString() + "." + convertFractionToBase(fractionResult, 10));
@@ -116,19 +118,19 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-    private String convertFractionToBase(double fraction, int radix) {
+    private String convertFractionToBase(BigDecimal fraction, int radix) {
         String result = "";
-        for (int i = 0; i < 64; i++) {
-            fraction *= radix;
-            int x = (int) fraction;
-            char c = (char) ('0' + x);
-            if (x > 9) {
-                int u = x - 10;
-                c = (char) ('A' + u);
+        BigDecimal base = new BigDecimal(radix);
+        for (int i = 0; i < 128; i++) {
+            fraction = fraction.multiply(base);
+            BigInteger x = fraction.toBigInteger();
+            char c = (char) ('0' + x.intValue());
+            if (x.compareTo(BigInteger.valueOf(9)) == 1) {
+                c = (char) ('A' + (x.intValue() - 10));
             }
             result = result + c;
-            fraction -= x;
-            if (fraction == 0.0d) break;
+            fraction = fraction.subtract(BigDecimal.valueOf(x.intValue()));
+            if (fraction.compareTo(BigDecimal.ZERO) == 0) break;
         }
         return result;
     }
