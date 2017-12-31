@@ -3,8 +3,11 @@ package com.danielstone.binarytools.viewmodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 
 public class HomeViewModel extends ViewModel {
 
@@ -26,49 +29,114 @@ public class HomeViewModel extends ViewModel {
         n2Base.setValue(base);
     }
 
-    public boolean setNewValue(String s, int radix) {
+    public boolean setNewValue(String input, int radix) {
         try {
-            s = s.toUpperCase();
-            // Convert from base radix to base 10.
-            BigInteger base = BigInteger.valueOf(radix);
-            BigInteger result = new BigInteger("0");
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i); // the
-                int u = (int) c; // integer representation of the character in ascii
-                if ((u >= '0' && u <= '9') || (u >= 'A' && u <= 'Z')) { // if the character is a number or alphabetical letter
-                    if ((u >= '0' && u <= '9')) u = u - '0';
-                    else u = (u - 'A') + 10; // change the integer representation to the correct value
-                    if (u >= radix) throw new Exception();
-                    BigInteger digit = new BigInteger(String.valueOf(u));
-                    BigInteger value = digit.multiply(new BigInteger(String.valueOf(base.pow(s.length() - (i + 1)))));
-                    result = result.add(value);
-                } else {
-                    throw new Exception();
+            input = input.toUpperCase();
+            int dots = 0;
+            for (int i = 0; i < input.length(); i++) {
+                if (input.charAt(i) == '.') {
+                    dots ++;
                 }
             }
 
-            baseTwo.setValue(convertToBase(result, 2));
-            baseEight.setValue(convertToBase(result, 8));
-            baseTen.setValue(convertToBase(result, 10));
-            baseSixteen.setValue(convertToBase(result, 16));
-            if (n1Base.getValue() == null) n1Base.setValue(24);
-            if (n2Base.getValue() == null) n2Base.setValue(36);
-            baseN1.setValue(convertToBase(result, n1Base.getValue()));
-            baseN2.setValue(convertToBase(result, n2Base.getValue()));
+            if (dots > 1) throw new Exception();
+
+            String[] parts = input.split("\\.");
+            if (parts.length == 0 || parts.length > 2) throw new Exception();
+
+            BigInteger integerResult = null;
+            if (parts.length >= 1) {
+                String integerPart = null;
+                integerPart = parts[0];
+                // Convert from base radix to base 10.
+                BigInteger base = BigInteger.valueOf(radix);
+                integerResult = new BigInteger("0");
+                for (int i = 0; i < integerPart.length(); i++) {
+                    char c = integerPart.charAt(i); // the
+                    int u = (int) c; // integer representation of the character in ascii
+                    if ((u >= '0' && u <= '9') || (u >= 'A' && u <= 'Z')) { // if the character is a number or alphabetical letter
+                        if ((u >= '0' && u <= '9')) u = u - '0';
+                        else u = (u - 'A') + 10; // change the integer representation to the correct value
+                        if (u >= radix) throw new Exception();
+                        BigInteger digit = new BigInteger(String.valueOf(u));
+                        BigInteger value = digit.multiply(new BigInteger(String.valueOf(base.pow(integerPart.length() - (i + 1)))));
+                        integerResult = integerResult.add(value);
+                    } else {
+                        throw new Exception();
+                    }
+                }
+            }
+            double fractionResult = -1;
+            if (parts.length == 2) {
+                String fractionPart = parts[1];
+                BigDecimal base = BigDecimal.valueOf(radix);
+                fractionResult = 0.0;
+                for (int i = 0; i < fractionPart.length(); i++) {
+                    char c = fractionPart.charAt(i); // the
+                    int u = (int) c; // integer representation of the character in ascii
+                    if ((u >= '0' && u <= '9') || (u >= 'A' && u <= 'Z')) { // if the character is a number or alphabetical letter
+                        if ((u >= '0' && u <= '9')) u = u - '0';
+                        else u = (u - 'A') + 10; // change the integer representation to the correct value
+                        if (u >= radix) throw new Exception();
+                        fractionResult += u * Math.pow(radix, (-1 - i));
+                    } else {
+                        throw new Exception();
+                    }
+                }
+            }
+
+            if (integerResult != null && fractionResult  == -1) {
+                baseTwo.setValue(convertIntegerToBase(integerResult, 2));
+                baseEight.setValue(convertIntegerToBase(integerResult, 8));
+                baseTen.setValue(integerResult.toString());
+                baseSixteen.setValue(convertIntegerToBase(integerResult, 16));
+                if (n1Base.getValue() == null) n1Base.setValue(24);
+                if (n2Base.getValue() == null) n2Base.setValue(36);
+                baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()));
+                baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()));
+            }
+            if (integerResult != null && fractionResult != -1) {
+                baseTwo.setValue(convertIntegerToBase(integerResult, 2) + "." + convertFractionToBase(fractionResult, 2));
+                baseEight.setValue(convertIntegerToBase(integerResult, 8) + "." + convertFractionToBase(fractionResult, 8));
+                baseTen.setValue(integerResult.toString() + "." + convertFractionToBase(fractionResult, 10));
+                baseSixteen.setValue(convertIntegerToBase(integerResult, 16) + "." + convertFractionToBase(fractionResult, 16));
+                if (n1Base.getValue() == null) n1Base.setValue(24);
+                if (n2Base.getValue() == null) n2Base.setValue(36);
+                baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()) + "." + convertFractionToBase(fractionResult, n1Base.getValue()));
+                baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()) + "." + convertFractionToBase(fractionResult, n2Base.getValue()));
+            }
 
             return true;
 
         } catch (Throwable e) {
+            e.printStackTrace();
             clearStrings();
             return false;
         }
 
     }
 
-    private String convertToBase(BigInteger decimal, int radix) throws Throwable {
+    private String convertFractionToBase(double fraction, int radix) {
         String result = "";
-        while (decimal.intValue() != 0) {
-            BigInteger[] division = decimal.divideAndRemainder(BigInteger.valueOf(radix));
+        for (int i = 0; i < 64; i++) {
+            fraction *= radix;
+            int x = (int) fraction;
+            char c = (char) ('0' + x);
+            if (x > 9) {
+                int u = x - 10;
+                c = (char) ('A' + u);
+            }
+            result = result + c;
+            fraction -= x;
+            if (fraction == 0.0d) break;
+        }
+        return result;
+    }
+
+    private String convertIntegerToBase(BigInteger integer, int radix) throws Throwable {
+        String result = "";
+        while (integer.intValue() != 0) {
+            BigInteger[] division = integer.divideAndRemainder(BigInteger.valueOf(radix));
             int remainder = division[1].intValue();
             char c = (char) ('0' + remainder); // get the character using the remainder
             if (remainder > 9) { // if the character
@@ -76,7 +144,7 @@ public class HomeViewModel extends ViewModel {
                 c = (char) ('A' + u); // update the character
             }
             result = c + result; // append to beginning of result
-            decimal = division[0]; // use the new decimal value.
+            integer = division[0]; // use the new decimal value.
         }
         return result;
     }

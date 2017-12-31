@@ -173,7 +173,8 @@ public class HomeFragment extends Fragment {
                 model.setN2Base(radix);
                 model.setNewValue(inputBaseTen.getEditText().getText().toString(), 10);
             }
-            if (radix > 1) inputLayout.setEnabled(true);
+            if (radix >= 2 && radix <= 36) inputLayout.setEnabled(true);
+            else inputLayout.setEnabled(false);
 
         }
     }
