@@ -143,6 +143,14 @@ public class AboutFragment extends MaterialAboutFragment implements SharedPrefer
                 "material-about-library", "2018", "Daniel Stone",
                 OpenSourceLicense.APACHE_2);
 
+        MaterialAboutCard materialDialogsLicenseCard = ConvenienceBuilder.createLicenseCard(getActivity(),
+                new IconicsDrawable(getActivity())
+                        .icon(CommunityMaterial.Icon.cmd_book)
+                        .color(ContextCompat.getColor(getActivity(), R.color.mal_color_icon_light_theme))
+                        .sizeDp(18),
+                "material-dialogs", "2018", "afollestad",
+                OpenSourceLicense.MIT);
+
         MaterialAboutCard androidIconicsLicenseCard = ConvenienceBuilder.createLicenseCard(getActivity(),
                 new IconicsDrawable(getActivity())
                         .icon(CommunityMaterial.Icon.cmd_book)
@@ -151,7 +159,7 @@ public class AboutFragment extends MaterialAboutFragment implements SharedPrefer
                 "Android Iconics", "2018", "Mike Penz",
                 OpenSourceLicense.APACHE_2);
 
-        return new MaterialAboutList(appCardBuilder.build(), preferencesCardBuilder.build(), authorCardBuilder.build(), supportDevelopment.build(), malLicenseCard, androidIconicsLicenseCard);
+        return new MaterialAboutList(appCardBuilder.build(), preferencesCardBuilder.build(), authorCardBuilder.build(), supportDevelopment.build(), malLicenseCard, materialDialogsLicenseCard, androidIconicsLicenseCard);
     }
 
     @Override

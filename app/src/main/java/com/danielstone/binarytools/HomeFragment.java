@@ -26,6 +26,8 @@ import android.widget.EditText;
 
 import com.danielstone.binarytools.viewmodel.HomeViewModel;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -63,6 +65,16 @@ public class HomeFragment extends Fragment implements SharedPreferences.OnShared
 
     public HomeFragment() {
         // Required empty public constructor
+    }
+
+    public class BaseTenResult {
+        BigInteger integerResult = null;
+        BigDecimal fractionResult = null;
+
+        public BaseTenResult(BigInteger integerResult, BigDecimal fractionResult) {
+            this.integerResult = integerResult;
+            this.fractionResult = fractionResult;
+        }
     }
 
     public static HomeFragment newInstance() {
@@ -219,10 +231,9 @@ public class HomeFragment extends Fragment implements SharedPreferences.OnShared
         inputBaseSixteen.getEditText().addTextChangedListener(textWatchers[16]);
 
         final CustomBaseWatcher inputN1BaseWatcher = new CustomBaseWatcher(inputN1, inputBaseN1, 1);
-        inputN1.addTextChangedListener(inputN1BaseWatcher);
         inputBaseN1.getEditText().addTextChangedListener(textWatchers[37]);
+
         final CustomBaseWatcher inputN2BaseWatcher = new CustomBaseWatcher(inputN2, inputBaseN2, 2);
-        inputN2.addTextChangedListener(inputN2BaseWatcher);
         inputBaseN2.getEditText().addTextChangedListener(textWatchers[38]);
 
 
@@ -253,7 +264,6 @@ public class HomeFragment extends Fragment implements SharedPreferences.OnShared
                 }
             }
         });
-
         return root;
     }
 

@@ -100,8 +100,8 @@ public class HomeViewModel extends ViewModel {
                 baseSixteen.setValue(convertIntegerToBase(integerResult, 16));
                 if (n1Base.getValue() == null) n1Base.setValue(24);
                 if (n2Base.getValue() == null) n2Base.setValue(36);
-                baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()));
-                baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()));
+                if (n1Base.getValue() <= 36 && n1Base.getValue() >= 2)baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()));
+                if (n2Base.getValue() <= 36 && n2Base.getValue() >= 2) baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()));
             }
             if (integerResult != null && fractionResult != null) {
                 baseTwo.setValue(convertIntegerToBase(integerResult, 2) + "." + convertFractionToBase(fractionResult, 2));
@@ -110,8 +110,8 @@ public class HomeViewModel extends ViewModel {
                 baseSixteen.setValue(convertIntegerToBase(integerResult, 16) + "." + convertFractionToBase(fractionResult, 16));
                 if (n1Base.getValue() == null) n1Base.setValue(24);
                 if (n2Base.getValue() == null) n2Base.setValue(36);
-                baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()) + "." + convertFractionToBase(fractionResult, n1Base.getValue()));
-                baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()) + "." + convertFractionToBase(fractionResult, n2Base.getValue()));
+                if (n1Base.getValue() <= 36 && n1Base.getValue() >= 2) baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()) + "." + convertFractionToBase(fractionResult, n1Base.getValue()));
+                if (n2Base.getValue() <= 36 && n2Base.getValue() >= 2) baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()) + "." + convertFractionToBase(fractionResult, n2Base.getValue()));
             }
 
             return true;
