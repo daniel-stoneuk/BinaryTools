@@ -1,12 +1,21 @@
 package com.danielstone.binarytools;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
+import android.util.Log;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutFragment;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -18,7 +27,10 @@ import com.mikepenz.iconics.IconicsDrawable;
  * Created by danielstone on 29/12/2017.
  */
 
-public class AboutFragment extends MaterialAboutFragment {
+public class AboutFragment extends MaterialAboutFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    SharedPreferences preferences;
+
     @Override
     protected MaterialAboutList getMaterialAboutList(Context context) {
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
@@ -39,6 +51,35 @@ public class AboutFragment extends MaterialAboutFragment {
                 "Version",
                 false));
 
+
+        MaterialAboutCard.Builder preferencesCardBuilder = new MaterialAboutCard.Builder();
+        preferencesCardBuilder.title("Preferences");
+
+        preferencesCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Decimal Places")
+                .subText(String.valueOf(preferences.getInt(getString(R.string.pref_decimal_places), 20) + " (tap to change)"))
+                .icon(new IconicsDrawable(getActivity())
+                        .icon(CommunityMaterial.Icon.cmd_adjust)
+                        .color(ContextCompat.getColor(getActivity(), R.color.mal_color_icon_light_theme))
+                        .sizeDp(18))
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                                      @Override
+                                      public void onClick() {
+                                          new MaterialDialog.Builder(getActivity())
+                                                  .title("Number of Decimal Places")
+                                                  .content("Precision of decimals:")
+                                                  .inputType(InputType.TYPE_CLASS_NUMBER)
+                                                  .input("number of decimal places", String.valueOf(preferences.getInt(getString(R.string.pref_decimal_places), 20)), new MaterialDialog.InputCallback() {
+                                                      @Override
+                                                      public void onInput(MaterialDialog dialog, CharSequence input) {
+                                                          preferences.edit().putInt("decimal_places", Integer.valueOf(String.valueOf(input))).apply();
+                                                      }
+                                                  })
+                                                  .inputRange(1,2, Color.RED).show();
+                                      }
+                                  }
+                )
+                .build());
 
         MaterialAboutCard.Builder authorCardBuilder = new MaterialAboutCard.Builder();
         authorCardBuilder.title("Author");
@@ -110,11 +151,37 @@ public class AboutFragment extends MaterialAboutFragment {
                 "Android Iconics", "2018", "Mike Penz",
                 OpenSourceLicense.APACHE_2);
 
-        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), supportDevelopment.build(), malLicenseCard, androidIconicsLicenseCard);
+        return new MaterialAboutList(appCardBuilder.build(), preferencesCardBuilder.build(), authorCardBuilder.build(), supportDevelopment.build(), malLicenseCard, androidIconicsLicenseCard);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        preferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        preferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     protected int getTheme() {
         return R.style.AppTheme_MaterialAboutActivity_Fragment;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_decimal_places))) {
+            ((MaterialAboutActionItem) getMaterialAboutList().getCards().get(1).getItems().get(0)).setSubText(String.valueOf(sharedPreferences.getInt(key, 20)));
+            refreshMaterialAboutList();
+        }
     }
 }

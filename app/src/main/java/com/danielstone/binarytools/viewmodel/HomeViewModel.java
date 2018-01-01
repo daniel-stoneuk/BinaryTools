@@ -18,8 +18,10 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<String> baseN1 = new MutableLiveData<>();
     private final MutableLiveData<String> baseN2 = new MutableLiveData<>();
 
-    private MutableLiveData<Integer> n1Base = new MutableLiveData<Integer>();
-    private MutableLiveData<Integer> n2Base = new MutableLiveData<Integer>();
+    private final MutableLiveData<Integer> n1Base = new MutableLiveData<Integer>();
+    private final MutableLiveData<Integer> n2Base = new MutableLiveData<Integer>();
+
+    private int decimalPlaces = 20;
 
     public void setN1Base(int base) {
         n1Base.setValue(base);
@@ -27,6 +29,10 @@ public class HomeViewModel extends ViewModel {
 
     public void setN2Base(int base) {
         n2Base.setValue(base);
+    }
+
+    public void setDecimalPlaces(int decimalPlaces) {
+        this.decimalPlaces = decimalPlaces;
     }
 
     public boolean setNewValue(String input, int radix) {
@@ -121,7 +127,7 @@ public class HomeViewModel extends ViewModel {
     private String convertFractionToBase(BigDecimal fraction, int radix) {
         String result = "";
         BigDecimal base = new BigDecimal(radix);
-        for (int i = 0; i < 128; i++) {
+        for (int i = 0; i < decimalPlaces; i++) {
             fraction = fraction.multiply(base);
             BigInteger x = fraction.toBigInteger();
             char c = (char) ('0' + x.intValue());

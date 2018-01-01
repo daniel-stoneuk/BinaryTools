@@ -5,7 +5,9 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.TextInputLayout;
@@ -32,7 +34,7 @@ import butterknife.Unbinder;
 import timber.log.Timber;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private OnFragmentIL mListener;
 
@@ -55,8 +57,9 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.input_base_n2)
     TextInputLayout inputBaseN2;
 
-
     private Unbinder unbinder;
+
+    SharedPreferences preferences;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -78,27 +81,16 @@ public class HomeFragment extends Fragment {
         }
         model = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
 
-        setHasOptionsMenu(true);
-
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_home_fragment, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
+
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_item_choose_precision: {
-                BottomSheetDialogFragment bottomSheetDialogFragment = new PrecisionBottomSheetDialogFragment();
-                bottomSheetDialogFragment.show(getActivity().getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
-            }
-
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_decimal_places))) {
+            model.setDecimalPlaces(sharedPreferences.getInt(key, 20));
         }
-        return super.onOptionsItemSelected(item);
     }
 
     class MyObserver implements Observer<String> {
@@ -146,8 +138,6 @@ public class HomeFragment extends Fragment {
         public void afterTextChanged(Editable s) {
             Timber.i("radix: " + radix + " s: " + s);
             int radix = this.radix;
-//            if (this.radix == 37) model.getN1Base().setValue(radix);
-//            if (this.radix == 38) model.getN2Base().setValue(radix);
             if (!s.toString().isEmpty()) {
                 if (!model.setNewValue(s.toString(), radix)) {
                     textInputLayout.setError("Invalid Input");
@@ -277,6 +267,19 @@ public class HomeFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentIL");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        model.setDecimalPlaces(preferences.getInt(getString(R.string.pref_decimal_places), 20));
+        preferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        preferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
