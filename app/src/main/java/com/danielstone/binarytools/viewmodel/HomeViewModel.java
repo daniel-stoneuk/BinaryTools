@@ -137,7 +137,7 @@ public class HomeViewModel extends ViewModel {
 
     private String convertIntegerToBase(BigInteger integer, int radix) throws Throwable {
         String result = "";
-        while (integer.intValue() != 0) {
+        while (integer.compareTo(BigInteger.ZERO) != 0) {
             BigInteger[] division = integer.divideAndRemainder(BigInteger.valueOf(radix));
             int remainder = division[1].intValue();
             char c = (char) ('0' + remainder); // get the character using the remainder
@@ -148,6 +148,7 @@ public class HomeViewModel extends ViewModel {
             result = c + result; // append to beginning of result
             integer = division[0]; // use the new decimal value.
         }
+        if (result.isEmpty()) result = "0";
         return result;
     }
 

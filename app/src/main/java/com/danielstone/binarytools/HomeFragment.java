@@ -4,13 +4,20 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -69,9 +76,29 @@ public class HomeFragment extends Fragment {
         if (getArguments() != null) {
             // Get args
         }
-
         model = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
 
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_home_fragment, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_item_choose_precision: {
+                BottomSheetDialogFragment bottomSheetDialogFragment = new PrecisionBottomSheetDialogFragment();
+                bottomSheetDialogFragment.show(getActivity().getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+            }
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class MyObserver implements Observer<String> {
@@ -119,8 +146,8 @@ public class HomeFragment extends Fragment {
         public void afterTextChanged(Editable s) {
             Timber.i("radix: " + radix + " s: " + s);
             int radix = this.radix;
-            if (this.radix == 37) model.getN1Base().setValue(radix);
-            if (this.radix == 38) model.getN2Base().setValue(radix);
+//            if (this.radix == 37) model.getN1Base().setValue(radix);
+//            if (this.radix == 38) model.getN2Base().setValue(radix);
             if (!s.toString().isEmpty()) {
                 if (!model.setNewValue(s.toString(), radix)) {
                     textInputLayout.setError("Invalid Input");
