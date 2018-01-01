@@ -176,7 +176,7 @@ public class HomeFragment extends Fragment implements SharedPreferences.OnShared
         @SuppressLint("SetTextI18n")
         @Override
         public void afterTextChanged(Editable s) {
-            int radix = 2;
+            int radix;
             try {
                 radix = Integer.parseInt(s.toString());
             } catch (Exception e) {

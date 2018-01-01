@@ -72,7 +72,7 @@ public class AboutFragment extends MaterialAboutFragment implements SharedPrefer
                                                   .input("number of decimal places", String.valueOf(preferences.getInt(getString(R.string.pref_decimal_places), 20)), new MaterialDialog.InputCallback() {
                                                       @Override
                                                       public void onInput(MaterialDialog dialog, CharSequence input) {
-                                                          preferences.edit().putInt("decimal_places", Integer.valueOf(String.valueOf(input))).apply();
+                                                          preferences.edit().putInt(getString(R.string.pref_decimal_places), Integer.valueOf(String.valueOf(input))).apply();
                                                       }
                                                   })
                                                   .inputRange(1,2, Color.RED).show();
