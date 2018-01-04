@@ -1,6 +1,6 @@
 # BinaryTools
 
-Get it on [Google Play](https://play.google.com/store/apps/details?id=com.danielstone.binarytools) or test it with Appetize [here](https://appetize.io/embed/qzk2xppmw1wdyqxfucpg624uer?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
+Get it on [Google Play](https://play.google.com/store/apps/details?id=com.danielstone.binarytools) or test it with Appetize [here](https://appetize.io/app/qzk2xppmw1wdyqxfucpg624uer?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
 
 An Open-Source High Precision Base Converter with Fixed Point Support.
 
