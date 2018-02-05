@@ -36,6 +36,10 @@ public class HomeViewModel extends ViewModel {
     }
 
     public boolean setNewValue(String input, int radix) {
+        if (n1Base.getValue() == null) n1Base.setValue(24);
+        if (n2Base.getValue() == null) n2Base.setValue(36);
+        if (radix == 37) radix = n1Base.getValue();
+        if (radix == 38) radix = n2Base.getValue();
         try {
             input = input.toUpperCase();
             int dots = 0;
@@ -98,8 +102,6 @@ public class HomeViewModel extends ViewModel {
                 baseEight.setValue(convertIntegerToBase(integerResult, 8));
                 baseTen.setValue(integerResult.toString());
                 baseSixteen.setValue(convertIntegerToBase(integerResult, 16));
-                if (n1Base.getValue() == null) n1Base.setValue(24);
-                if (n2Base.getValue() == null) n2Base.setValue(36);
                 if (n1Base.getValue() <= 36 && n1Base.getValue() >= 2)baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()));
                 if (n2Base.getValue() <= 36 && n2Base.getValue() >= 2) baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()));
             }
@@ -108,8 +110,6 @@ public class HomeViewModel extends ViewModel {
                 baseEight.setValue(convertIntegerToBase(integerResult, 8) + "." + convertFractionToBase(fractionResult, 8));
                 baseTen.setValue(integerResult.toString() + "." + convertFractionToBase(fractionResult, 10));
                 baseSixteen.setValue(convertIntegerToBase(integerResult, 16) + "." + convertFractionToBase(fractionResult, 16));
-                if (n1Base.getValue() == null) n1Base.setValue(24);
-                if (n2Base.getValue() == null) n2Base.setValue(36);
                 if (n1Base.getValue() <= 36 && n1Base.getValue() >= 2) baseN1.setValue(convertIntegerToBase(integerResult, n1Base.getValue()) + "." + convertFractionToBase(fractionResult, n1Base.getValue()));
                 if (n2Base.getValue() <= 36 && n2Base.getValue() >= 2) baseN2.setValue(convertIntegerToBase(integerResult, n2Base.getValue()) + "." + convertFractionToBase(fractionResult, n2Base.getValue()));
             }
