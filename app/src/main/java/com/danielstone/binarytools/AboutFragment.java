@@ -188,7 +188,7 @@ public class AboutFragment extends MaterialAboutFragment implements SharedPrefer
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.pref_decimal_places))) {
-            ((MaterialAboutActionItem) getMaterialAboutList().getCards().get(1).getItems().get(0)).setSubText(String.valueOf(sharedPreferences.getInt(key, 20)));
+            ((MaterialAboutActionItem) getList().getCards().get(1).getItems().get(0)).setSubText(String.valueOf(sharedPreferences.getInt(key, 20)));
             refreshMaterialAboutList();
         }
     }

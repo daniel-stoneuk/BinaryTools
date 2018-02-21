@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 
 def versionMajor = 1
 def versionMinor = 0
-def versionPatch = 1
-def versionBuild = 1 // bump for dogfood builds, public betas, etc.
+def versionPatch = 2
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 
 android {
@@ -34,7 +34,7 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.6.0'
 
-    implementation 'com.github.daniel-stoneuk:material-about-library:1cbca30330'
+    compile 'com.github.daniel-stoneuk:material-about-library:2.2.4'
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.7'
@@ -42,8 +42,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    implementation "android.arch.lifecycle:extensions:1.0.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
