@@ -43,7 +43,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_container, HomeFragment.newInstance()).commit();
+        if (getSupportFragmentManager().findFragmentById(R.id.mainactivity_container) == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_container, HomeFragment.newInstance()).commit();
+        }
+
 
     }
 
